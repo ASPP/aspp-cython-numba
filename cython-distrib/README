@@ -1,0 +1,12 @@
+This is a very simple package that uses cython.
+
+First look at setup.py and integrate_f5.pyx.
+
+Use
+  python3 setup.py build
+or
+  python3 setup.py build_ext -i
+to compile the code.
+
+Load the resulting module in the python interpreter.
+Call the integrate_f5() function.
