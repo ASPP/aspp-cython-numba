@@ -1,0 +1,140 @@
+	.text
+	.file	"<string>"
+	.globl	_ZN8__main__25runningsum_numba_loop$242Ex
+	.p2align	4, 0x90
+	.type	_ZN8__main__25runningsum_numba_loop$242Ex,@function
+_ZN8__main__25runningsum_numba_loop$242Ex:
+	xorl	%ecx, %ecx
+	testq	%rdx, %rdx
+	leaq	1(%rdx), %rax
+	cmovsq	%rcx, %rax
+	testq	%rax, %rax
+	jle	.LBB0_2
+	movq	%rax, %rcx
+	notq	%rcx
+	cmpq	$-3, %rcx
+	movq	$-2, %rdx
+	cmovgq	%rcx, %rdx
+	leaq	(%rax,%rdx), %rcx
+	addq	%rax, %rdx
+	addq	$1, %rdx
+	mulxq	%rcx, %rax, %rdx
+	shldq	$63, %rax, %rdx
+	addq	%rdx, %rcx
+	addq	$1, %rcx
+.LBB0_2:
+	movq	%rcx, (%rdi)
+	xorl	%eax, %eax
+	retq
+.Lfunc_end0:
+	.size	_ZN8__main__25runningsum_numba_loop$242Ex, .Lfunc_end0-_ZN8__main__25runningsum_numba_loop$242Ex
+
+	.globl	_ZN7cpython8__main__25runningsum_numba_loop$242Ex
+	.p2align	4, 0x90
+	.type	_ZN7cpython8__main__25runningsum_numba_loop$242Ex,@function
+_ZN7cpython8__main__25runningsum_numba_loop$242Ex:
+	.cfi_startproc
+	pushq	%r14
+	.cfi_def_cfa_offset 16
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	pushq	%rax
+	.cfi_def_cfa_offset 32
+	.cfi_offset %rbx, -24
+	.cfi_offset %r14, -16
+	movabsq	$.const.runningsum_numba_loop, %rbx
+	movabsq	$PyArg_UnpackTuple, %r9
+	movq	%rsp, %r8
+	movl	$1, %edx
+	movl	$1, %ecx
+	xorl	%eax, %eax
+	movq	%rsi, %rdi
+	movq	%rbx, %rsi
+	callq	*%r9
+	testl	%eax, %eax
+	je	.LBB1_1
+	movabsq	$_ZN08NumbaEnv8__main__25runningsum_numba_loop$242Ex, %rax
+	cmpq	$0, (%rax)
+	je	.LBB1_4
+	movq	(%rsp), %rdi
+	movabsq	$PyNumber_Long, %rax
+	callq	*%rax
+	movq	%rax, %rbx
+	testq	%rbx, %rbx
+	je	.LBB1_6
+	movabsq	$PyLong_AsLongLong, %rax
+	movq	%rbx, %rdi
+	callq	*%rax
+	movq	%rax, %r14
+	movabsq	$Py_DecRef, %rax
+	movq	%rbx, %rdi
+	callq	*%rax
+	movabsq	$PyErr_Occurred, %rax
+	callq	*%rax
+	testq	%rax, %rax
+	jne	.LBB1_1
+.LBB1_9:
+	xorl	%edi, %edi
+	testq	%r14, %r14
+	leaq	1(%r14), %rax
+	cmovsq	%rdi, %rax
+	testq	%rax, %rax
+	jle	.LBB1_11
+	movq	%rax, %rcx
+	notq	%rcx
+	cmpq	$-3, %rcx
+	movq	$-2, %rdx
+	cmovgq	%rcx, %rdx
+	leaq	(%rdx,%rax), %rcx
+	addq	%rax, %rdx
+	addq	$1, %rdx
+	mulxq	%rcx, %rax, %rdx
+	shldq	$63, %rax, %rdx
+	leaq	(%rdx,%rcx), %rdi
+	addq	$1, %rdi
+.LBB1_11:
+	movabsq	$PyLong_FromLongLong, %rax
+	callq	*%rax
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	retq
+.LBB1_4:
+	movabsq	$PyExc_RuntimeError, %rdi
+	movabsq	$".const.missing Environment", %rsi
+	movabsq	$PyErr_SetString, %rax
+	callq	*%rax
+.LBB1_1:
+	xorl	%eax, %eax
+	addq	$8, %rsp
+	popq	%rbx
+	popq	%r14
+	retq
+.LBB1_6:
+	movabsq	$PyErr_Occurred, %rax
+	callq	*%rax
+	testq	%rax, %rax
+	je	.LBB1_9
+	jmp	.LBB1_1
+.Lfunc_end1:
+	.size	_ZN7cpython8__main__25runningsum_numba_loop$242Ex, .Lfunc_end1-_ZN7cpython8__main__25runningsum_numba_loop$242Ex
+	.cfi_endproc
+
+	.type	_ZN08NumbaEnv8__main__25runningsum_numba_loop$242Ex,@object
+	.comm	_ZN08NumbaEnv8__main__25runningsum_numba_loop$242Ex,8,8
+	.type	.const.runningsum_numba_loop,@object
+	.section	.rodata,"a",@progbits
+	.p2align	4
+.const.runningsum_numba_loop:
+	.asciz	"runningsum_numba_loop"
+	.size	.const.runningsum_numba_loop, 22
+
+	.type	".const.missing Environment",@object
+	.p2align	4
+".const.missing Environment":
+	.asciz	"missing Environment"
+	.size	".const.missing Environment", 20
+
+
+	.section	".note.GNU-stack","",@progbits
+
